@@ -1,8 +1,8 @@
 # Pi Agent 安装与使用
 
-姓名：解欣玥
-GitHub登录名：LengGuang2678
-学号：202430224069
+姓名：解欣玥  <br>
+GitHub登录名：LengGuang2678  <br>
+学号：202430224069  <br>
 
 ## 实验说明
 
@@ -56,20 +56,48 @@ GitHub登录名：LengGuang2678
 
 *图 6：提交给 Pi 识别的原始图片（`pic.jpg`）。*
 
-![粘贴图片并获取图像描述](./截图/S4.B.png)
+![粘贴图片并获取图像描述](./截图/S5.B.png)
 
 *图 7：提交图片附件后，Pi 对图片内容进行了描述。*
 
 ## 任务五：安装并使用插件
 
-本次选用的插件为 `pi-web-access`，实际使用其网页抓取和读取页面内容的功能：请求获取 `https://example.com` 的页面标题。重启后的 Pi 启动信息中出现 `[Extensions]` 区域及 `pi-web-access:dist`，表明插件已加载。
+本次选用的插件为 `pi-web-access`。pi-web-access 是 Pi Agent 的网页访问扩展插件，核心作用是给 Pi 增加联网能力，让 Agent 可以访问互联网资源、抓取网页内容，自带多套兜底抓取策略，**默认无密钥也可以基础使用**Pi。实际使用其网页抓取和读取页面内容的功能：请求获取 `https://example.com` 的页面标题。重启后的 Pi 启动信息中出现 `[Extensions]` 区域及 `pi-web-access:dist`，表明插件已加载。
 
 首次抓取因页面内容提取不完整而失败；Pi 随后改用原始模式获取页面 HTML，并成功识别标题为 `Example Domain`。因此，截图证明插件已加载，且通过原始模式完成了网页内容获取；也记录了首次抓取未成功的情况。
 
-![插件已加载并首次尝试抓取网页](./截图/S5.1.png)
+![插件已加载并首次尝试抓取网页](./截图/S6.1.png)
 
 *图 8：启动信息显示 pi-web-access:dist；首次抓取遇到内容提取限制。*
 
-![使用原始模式获取网页标题](./截图/S5.2.png)
+![使用原始模式获取网页标题](./截图/S6.2.png)
 
 *图 9：插件通过原始模式获取 HTML，成功返回页面标题 Example Domain。*
+
+## 任务六：安装、发现并调用 PPT Skill（选做项）
+
+### A. 安装 PPT Skill
+
+从 `anthropics/skills` 仓库下载 `skills/pptx` 完整目录，并安装到当前项目的 `.pi/skills/pptx`。目录中保留 `SKILL.md`、`LICENSE.txt`、`SOURCE_COMMIT.txt` 和 `scripts` 等支持文件；记录的源 commit 为 `2c5958ecac7cee2b583967a2c4981d0f4a75c579`。Skill 用于 `.pptx` 演示文稿及 `.potx` 模板的创建、编辑和分析，并提供缩略图、幻灯片增删及文件校验等脚本。
+
+![项目内 PPT Skill 文件夹](./截图/S7.1.png)
+
+*图 10：项目 `.pi/skills/pptx` 目录，包含 Skill 主文件、许可证、来源记录和脚本目录。*
+
+![PPT Skill 的 scripts 脚本目录](./截图/S7.2.png)
+
+*图 11：scripts 目录中的幻灯片处理与预览脚本。*
+
+### B. 重启发现并实际调用
+
+重新启动 Pi 后，启动资源列表的 `[Skills]` 区域显示 `pptx`，随后使用 `/skill:pptx` 显式调用。Pi 回复了 Skill 名称、用途及所在目录，说明它已被发现并能够调用。
+
+![Pi 启动后发现 pptx Skill 并开始调用](./截图/S8.1.png)
+
+*图 12：启动资源列表显示 pptx Skill，并展示显式调用及回复内容。*
+
+![pptx Skill 调用回复](./截图/S8.2.png)
+
+*图 13：Pi 说明 pptx Skill 的用途以及其在项目中的安装目录。*
+
+本任务验证了 Skill 的安装、启动发现和实际调用；未执行选做的两页 PPT 生成。
